@@ -38,4 +38,8 @@ class UserTest < ActiveSupport::TestCase
   	assert_same(@ptr.email,@ptr2.email,'Email ya registrado')
   end
 
+  test 'deleting list on cascade' do
+    @ptr.destroy
+    assert_empty List.where(user:@user.name)
+  end
 end
