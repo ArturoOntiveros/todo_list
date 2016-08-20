@@ -23,4 +23,10 @@ class TaskTest < ActiveSupport::TestCase
   test "campo completed no vacio"
 	assert_not_empty(@ptr.title, 'task without completed')
   end
+  
+  test 'deleting tasks on cascade' do
+    @ptr.destroy
+    assert_empty Task.where(list:@list.title)
+  end
+
 end
